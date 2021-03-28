@@ -7,7 +7,8 @@ from selenium.webdriver.common.by import By
 
 import basic_locators
 from selenium.common.exceptions import StaleElementReferenceException
-
+login = "vosaco7441@leonvero.com"
+password = "vosaco7441"
 CLICK_RETRY = 3
 
 
@@ -20,9 +21,15 @@ class BaseCase:
         self.driver = driver
         self.config = config
 
+
+
+
     def find(self, locator):
         return self.driver.find_element(*locator)
 
+    def get_field(self, locator):
+        element = self.driver.find_element(*locator)
+        return element.get_attribute("value")
 
     def click(self, locator):
         element = self.find(locator)
@@ -35,7 +42,7 @@ class BaseCase:
         element.send_keys(data)
 
     def enter_creds(self, login, password):
-        self.click(basic_locators.LOG_IN)
+        self.click(basic_locators.LOGIN_MENU)
         self.enter_data(basic_locators.EMAIL, login)
         self.enter_data(basic_locators.PASS, password)
         self.click(basic_locators.LOGIN_BUTTON)

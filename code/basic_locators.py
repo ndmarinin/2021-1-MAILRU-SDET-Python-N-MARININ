@@ -1,12 +1,16 @@
 from selenium.webdriver.common.by import By
 
-LOG_IN = (By.XPATH, '//div[contains(text(), "Войти")]')
+LOGIN_MENU = (By.XPATH, '//div[contains(text(), "Войти")]')
+
 EMAIL = (By.NAME, 'email')
 PASS = (By.NAME, 'password')
-LOGIN_BUTTON = (By.XPATH, '//div[@class="authForm-module-button-2G6lZu"]') #Два элемента с текстов войти, поэтому так
-PROFILE = (By.XPATH, '//div[@class="right-module-userNameWrap-34ibLS"]') #Кнопка профиля
+
+LOGIN_BUTTON = (By.XPATH, '//div[contains(@class, "authForm-module-button")]') #Два элемента с текстов войти, поэтому так
+PROFILE = (By.XPATH, '//div[contains(@class, "right-module-userNameWrap")]') #Кнопка профиля
 FIO_FIELD = (By.XPATH, '//div[@data-name="fio"]/div/input')
 PHONE_FIELD = (By.XPATH, '//div[@data-name="phone"]/div/input')
+HEADER = (By.XPATH, '//div[contains(@class, "responseHead-module-wrapper")]')
+
 MAIL_FIELD = (By.XPATH, '//div[@class="js-additional-email profile__list__row__input"]/div/div/input')
 
 SAVE_BUTTON =(By.XPATH, '//div[@class="button__text"]')

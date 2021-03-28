@@ -1,6 +1,9 @@
 import pytest
+
+
 from selenium import webdriver
-driver = webdriver.Chrome("C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe")
+
+
 
 def pytest_addoption(parser):
     parser.addoption('--url', default='https://target.my.com/')
@@ -20,3 +23,6 @@ def driver(config):
     browser.set_window_size(1400, 1000)
     yield browser
     browser.close()
+
+
+
