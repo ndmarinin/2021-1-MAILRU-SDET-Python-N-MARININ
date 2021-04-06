@@ -47,5 +47,6 @@ class TestOne(BaseCase):
         time.sleep(1)
         self.click(basic_locators.LOGOUT)
         time.sleep(1)
-        assert "Войти" in self.driver.page_source
+        button = self.find(basic_locators.LOGOUT_BUTTON)
+        assert "Войти" == button.text
 

@@ -1,12 +1,8 @@
 import pytest
 import time
-from selenium.webdriver.common.keys import Keys
-import selenium.webdriver.support.wait as webdriverWait
-import selenium.webdriver.support.expected_conditions as EC
-from selenium.webdriver.common.by import By
 
 import basic_locators
-from selenium.common.exceptions import StaleElementReferenceException
+
 login = "vosaco7441@leonvero.com"
 password = "vosaco7441"
 CLICK_RETRY = 3
