@@ -17,14 +17,13 @@ class TestOne(BaseCase):
         self.driver = driver
         self.config = config
         self.enter_creds(login, password)
-    @pytest.mark.skip
+
     def test_do_login(self):
         time.sleep(2)
         self.enter_creds(login, password)
         time.sleep(2)
         assert "Кампании" in self.driver.title
 
-    @pytest.mark.skip
     def test_edit_info(self, driver_auth):
         time.sleep(3)
         self.click(basic_locators.EDIT_PROFILE)
@@ -43,7 +42,6 @@ class TestOne(BaseCase):
         self.click(locator)
         assert title in self.driver.page_source
 
-    @pytest.mark.skip
     def test_logout(self, driver_auth):
         time.sleep(2)
         self.click(basic_locators.PROFILE)
