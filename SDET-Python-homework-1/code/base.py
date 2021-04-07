@@ -38,6 +38,7 @@ class BaseCase:
         element.send_keys(data)
 
     def enter_creds(self, login, password):
+        time.sleep(1)
         self.click(basic_locators.LOGIN_MENU)
         self.enter_data(basic_locators.EMAIL, login)
         self.enter_data(basic_locators.PASS, password)
@@ -49,15 +50,6 @@ class BaseCase:
         self.enter_data(basic_locators.MAIL_FIELD, mail)
         self.click(basic_locators.SAVE_BUTTON)
 
-    def enter_category(self, data):
-        if data == 'BILLING':
-            self.click(basic_locators.BILLING)
-            time.sleep(1)
-            assert "Лицевой счет" in self.driver.title
-        else:
-            self.click(basic_locators.STATS)
-            time.sleep(1)
-            assert "Статистика" in self.driver.title
 
 
 
