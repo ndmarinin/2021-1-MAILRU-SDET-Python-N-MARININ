@@ -9,11 +9,14 @@ from selenium.webdriver import ChromeOptions
 from ui.pages.base_page import BasePage
 from ui.pages.main_page import MainPage
 from ui.pages.lk_page import LK_Page
-
+from ui.pages.company_page import Company_Page
+from ui.pages.segment_page import Segment_Page
 
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
+login = "vosaco7441@leonvero.com"
+password = "vosaco7441"
 
 class UnsupportedBrowserType(Exception):
     pass
@@ -23,15 +26,27 @@ class UnsupportedBrowserType(Exception):
 def base_page(driver):
     return BasePage(driver=driver)
 
-
 @pytest.fixture
 def main_page(driver):
     return MainPage(driver=driver)
-
-
 @pytest.fixture
 def lk_page(driver):
     return LK_Page(driver=driver)
+@pytest.fixture
+def company_page(driver):
+    return Company_Page(driver=driver)
+@pytest.fixture
+def segment_page(driver):
+    return Segment_Page(driver=driver)
+
+
+@pytest.fixture(scope='function')
+def main_page_auth(driver):
+    main = MainPage(driver=driver)
+    main.enter_creds(login, password)
+    return main
+
+
 
 
 def get_driver(browser_name, download_dir):

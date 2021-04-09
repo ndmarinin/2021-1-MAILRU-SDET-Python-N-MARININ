@@ -31,21 +31,12 @@ class BasePage(object):
     def __init__(self, driver):
         self.driver = driver
         logger.info(f'{self.__class__.__name__} page is opening...')
-        assert self.is_opened()
 
-    def is_opened(self):
-        def _check_url():
-            if self.driver.current_url != self.url:
-                raise PageNotLoadedException(
-                    f'{self.url} did not opened in {BASE_TIMEOUT} for {self.__class__.__name__}.\n'
-                    f'Current url: {self.driver.current_url}.')
-            return True
-
-        return wait(_check_url, error=PageNotLoadedException, check=True, timeout=BASE_TIMEOUT, interval=0.1)
-
+    @allure.step('Find {locator}')
     def find(self, locator, timeout=None):
         return self.wait(timeout).until(EC.presence_of_element_located(locator))
 
+    @allure.step('Find {locator}')
     def find_elem(self, locator):
         logger.info(f'Find element {locator}')
         return self.driver.find_element(*locator)
@@ -60,10 +51,12 @@ class BasePage(object):
             logger.info('Driver waiting')
         return WebDriverWait(self.driver, timeout=timeout)
 
+    @allure.step('Scoll to  {element}')
     def scroll_to(self, element):
         logger.info(f'Scroll to {element}')
         self.driver.execute_script('arguments[0].scrollIntoView(true);', element)
 
+    @allure.step('Enter data  {locator}')
     def enter_data(self, locator, data):
         element = self.find(locator)
         element.click()
@@ -81,6 +74,7 @@ class BasePage(object):
         logger.info(f'FINDING FILE IN {DIR}')
         return DIR
 
+    @allure.step('Get {locator}')
     def get_field(self, locator):
         element = self.driver.find_element(*locator)
         logger.info(f'Get value attribute from {locator}')

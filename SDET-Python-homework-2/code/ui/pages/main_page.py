@@ -8,11 +8,14 @@ from ui.locators.pages_locators import MainPageLocators
 class MainPage(BasePage):
     locators = MainPageLocators()
 
+    @allure.step('Enter creds')
     def enter_creds(self, login, password):
         self.click(self.locators.LOGIN_MENU, 5)
         self.enter_data(self.locators.EMAIL, login)
         self.enter_data(self.locators.PASS, password)
         self.click(self.locators.LOGIN_BUTTON, 5)
 
-    def create_company(self):
-        self.create_company()
+    @allure.step('Go to dashboard')
+    def go_to_dashboard(self):
+        self.click(self.locators.DASHBOARD)
+        return LK_Page(self.driver)
