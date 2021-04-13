@@ -21,9 +21,6 @@ class PageNotLoadedException(Exception):
     pass
 
 
-
-
-
 class BasePage(object):
     url = 'https://target.my.com/'
     locators = BasePageLocators()
@@ -31,10 +28,6 @@ class BasePage(object):
     def __init__(self, driver):
         self.driver = driver
         logger.info(f'{self.__class__.__name__} page is opening...')
-
-    @allure.step('Find {locator}')
-    def find(self, locator, timeout=None):
-        return self.wait(timeout).until(EC.presence_of_element_located(locator))
 
     @allure.step('Find {locator}')
     def find_elem(self, locator):
@@ -51,6 +44,9 @@ class BasePage(object):
             logger.info('Driver waiting')
         return WebDriverWait(self.driver, timeout=timeout)
 
+    def find(self, locator, timeout=None):
+        return self.wait(timeout).until(EC.presence_of_element_located(locator))
+
     @allure.step('Scoll to  {element}')
     def scroll_to(self, element):
         logger.info(f'Scroll to {element}')
@@ -58,8 +54,8 @@ class BasePage(object):
 
     @allure.step('Enter data  {locator}')
     def enter_data(self, locator, data):
-        element = self.find(locator)
-        element.click()
+        element = self.find(locator, 5)
+        self.click(locator, 5)
         element.clear()
         logger.info(f'Send {data} to {locator}')
         element.send_keys(data)
@@ -83,10 +79,8 @@ class BasePage(object):
     @allure.step('Clicking {locator}')
     def click(self, locator, timeout=None):
         for i in range(CLICK_RETRY):
-            logger.info(f'Clicking on {locator}. Try {i + 1} of {CLICK_RETRY}...')
             try:
                 element = self.find(locator, timeout=timeout)
-                self.scroll_to(element)
                 element = self.wait(timeout).until(EC.element_to_be_clickable(locator))
                 element.click()
                 return

@@ -22,6 +22,7 @@ class CompanyPageLocators(BasePageLocators):
     SAVE_IMAGE = (By.XPATH, '//input[@value="Сохранить изображение"]')
     SAVE = (By.XPATH, '//div[contains(text(), "Создать кампанию")]')
     URL = (By.XPATH, '//input[contains(@class, "mainUrl-module-searchInput")]')
+    RELOAD = (By.XPATH, '//div[contains(@class, "icon-refresh")]' )
 
 class LKLocators(MainPageLocators):
     SEGMENT = (By.XPATH, '//a[@href="/segments"]')
@@ -36,6 +37,8 @@ class SegmentPageLocators(BasePageLocators):
     DELETE = (By.XPATH, '//li[contains(text(), "Удалить")]')
     APPLICATIONS = (By.XPATH, '//div[contains(text(), "Приложения и игры в соцсетях")]')
     CHECKBOX = (By.XPATH, '//input[contains(@class, "adding-segments-source__checkbox js-main-source-checkbox")]')
+    SEGMENT_TEMPLATE = (By.XPATH, '//a[contains(text(), "{}")]')
+    CELL_ID_TEMPLATE = (By.XPATH, '//span[contains(text(), "{}")]/../input')
 
 
 

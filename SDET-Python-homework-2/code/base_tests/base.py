@@ -22,7 +22,6 @@ class BaseCase:
         self.lk_page: LK_Page = request.getfixturevalue('lk_page')
         self.company_page: Company_Page = request.getfixturevalue('company_page')
         self.segment_page: Segment_Page = request.getfixturevalue('segment_page')
-        #self.main_page_auth: MainPage = request.getfixturevalue('main_page_auth')
 
         self.logger.debug('Initial setup done!')
 

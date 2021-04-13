@@ -14,25 +14,25 @@ class Segment_Page(BasePage):
 
 
     @allure.step('Creating segment')
-    def create_segment(self):
+    def create_segment(self, name):
         self.click(self.locators.CREATE_SEGMENT, 5)
         self.click(self.locators.APPLICATIONS, 5)
         self.click(self.locators.CHECKBOX, 5)
         self.click(self.locators.ADD_SEGMENT, 5)
-        name = self.get_field(self.locators.SEGMENT_NAME)
+        self.enter_data(self.locators.SEGMENT_NAME, name)
         self.click(self.locators.CREATE_SEGMENT, 5)
-        time.sleep(3)
-        return name
+        self.click(self.locators.ACTIONS, 5)
 
     @allure.step('Deleting segment {name}')
     def delete_segment(self, name):
-        self.find((By.XPATH, f'//a[contains(text(), "{name}")]'), 5)
-        element = self.find_elem((By.XPATH, f'//a[contains(text(), "{name}")]'))
+        locator_segement = (self.locators.SEGMENT_TEMPLATE[0], self.locators.SEGMENT_TEMPLATE[1].format(name))
+        element = self.find_elem(locator_segement)
         href = element.get_attribute('href')
         parts = str.split(href, '/')
         id = parts[len(parts) - 1]
-        cell_id = self.driver.find_element_by_xpath(f'//span[contains(text(), "{id}")]/../input')
+        locator_cell = (self.locators.CELL_ID_TEMPLATE[0], self.locators.CELL_ID_TEMPLATE[1].format(id))
+        cell_id = self.find(locator_cell)
         cell_id.click()
         self.click(self.locators.ACTIONS, 5)
         self.click(self.locators.DELETE, 5)
-        time.sleep(2)
+        self.click(self.locators.ACTIONS, 5)
