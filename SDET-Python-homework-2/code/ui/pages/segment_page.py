@@ -36,3 +36,7 @@ class Segment_Page(BasePage):
         self.click(self.locators.ACTIONS, 5)
         self.click(self.locators.DELETE, 5)
         self.click(self.locators.ACTIONS, 5)
+
+    @allure.step('Get main table')
+    def get_table(self):
+        return self.find_elem(self.locators.SEGMENT_TABLE)

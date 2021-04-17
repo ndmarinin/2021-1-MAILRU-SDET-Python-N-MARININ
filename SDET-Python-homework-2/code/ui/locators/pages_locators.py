@@ -23,6 +23,7 @@ class CompanyPageLocators(BasePageLocators):
     SAVE = (By.XPATH, '//div[contains(text(), "Создать кампанию")]')
     URL = (By.XPATH, '//input[contains(@class, "mainUrl-module-searchInput")]')
     RELOAD = (By.XPATH, '//div[contains(@class, "icon-refresh")]' )
+    COMPANY_TABLE = (By.XPATH, '//div[contains(@class, "main-module-TableWrapper")]')
 
 class LKLocators(MainPageLocators):
     SEGMENT = (By.XPATH, '//a[@href="/segments"]')
@@ -39,6 +40,7 @@ class SegmentPageLocators(BasePageLocators):
     CHECKBOX = (By.XPATH, '//input[contains(@class, "adding-segments-source__checkbox js-main-source-checkbox")]')
     SEGMENT_TEMPLATE = (By.XPATH, '//a[contains(text(), "{}")]')
     CELL_ID_TEMPLATE = (By.XPATH, '//span[contains(text(), "{}")]/../input')
+    SEGMENT_TABLE = (By.XPATH, '//div[contains(@class, "main-module-TableWrapper")]')
 
 
 

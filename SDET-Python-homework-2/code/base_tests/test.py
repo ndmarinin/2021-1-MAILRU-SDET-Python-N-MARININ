@@ -30,14 +30,16 @@ class TestOne(BaseCase):
         lk_page = main_page_auth.go_to_dashboard()
         companypage = lk_page.go_to_companys()
         companypage.create_company(name)
-        assert name in self.driver.page_source
+        table = companypage.get_table()
+        assert name in table.text
 
     @pytest.mark.ui
     def test_segment(self, main_page_auth):
         lk_page = main_page_auth.go_to_dashboard()
         segments = lk_page.go_to_segemnts()
         segments.create_segment(name_2)
-        assert name_2 in self.driver.page_source
+        table = segments.get_table()
+        assert name_2 in table.text
 
     @pytest.mark.ui
     def test_delete_segement(self, main_page_auth):
@@ -45,7 +47,8 @@ class TestOne(BaseCase):
         segments = lk_page.go_to_segemnts()
         segments.create_segment(name_3)
         segments.delete_segment(name_3)
-        assert name_3 not in self.driver.page_source
+        table = segments.get_table()
+        assert name_3 not in table.text
 
 
 class TestFailure(BaseCase):

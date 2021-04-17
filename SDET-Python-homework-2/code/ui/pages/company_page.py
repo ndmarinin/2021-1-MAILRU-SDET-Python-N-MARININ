@@ -22,3 +22,8 @@ class Company_Page(BasePage):
         self.click(self.locators.SAVE_IMAGE, 5)
         self.click(self.locators.SAVE, 5)
         self.click(self.locators.RELOAD, 5)
+
+    @allure.step('Getting company table')
+    def get_table(self):
+        return self.find_elem(self.locators.COMPANY_TABLE)
+

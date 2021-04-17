@@ -27,7 +27,7 @@ def repo_root():
 
 def pytest_configure(config):
     if sys.platform.startswith('win'):
-        base_test_dir = os.path.dirname(os.path.dirname(os.getcwd())) + '\\tests'
+        base_test_dir = os.path.dirname(os.path.abspath(os.path.join(__file__, os.pardir))) + '\\tests'
     else:
         base_test_dir = '/tmp/tests'
     if not hasattr(config, 'workerinput'):  # execute only once on main worker
