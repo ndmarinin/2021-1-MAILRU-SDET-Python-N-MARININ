@@ -1,0 +1,15 @@
+
+class URLS:
+    MAIN_PAGE = 'https://target.my.com/'
+    SESSION =  'https://target.my.com/api/v2/user/session.json?fields=sudoers__language,sudoers__username,sudoers__lastname,sudoers__types,sudoers__firstname,sudoers__additional_info,sudoers__additional_emails,sudoers__email_settings,sudoers__account,sudoers__active_banners,sudoers__agency,sudoers__agency_username,sudoers__branch_username,sudoers__branch,sudoers__email,sudoers__id,sudoers__mailings,sudoers__available_mailings,sudoers__max_active_banners,sudoers__permissions,sudoers__status,sudoers__currency,sudoers__info_currency,sudoers__partner,sudoers__dmp,sudoers__notifications,sudoers__regions,sudoers__timezone,sudoers__country&_=1618414356869'
+    SETTINGS = 'https://target.my.com/api/v2/settings.json?_=1618414356871'
+    AUTH = 'https://auth-ac.my.com/auth?lang=ru&nosavelogin=0'
+    LOGIN = 'https://target.my.com/auth/mycom?state=target_login%3D1%26ignore_opener%3D1'
+    CSRF = 'https://target.my.com/csrf/'
+    SEGMENTS_LIST = 'https://target.my.com/segments/segments_list'
+    CAMPAGINS = 'https://target.my.com/api/v2/campaigns.json'
+    DELETE_CAMPAGIN = 'https://target.my.com/api/v2/campaigns/mass_action.json'
+    CREATE_SEGMENT = 'https://target.my.com/api/v2/remarketing/segments.json?fields=relations__object_type,relations__object_id,relations__params,relations__params__score,relations__id,relations_count,id,name,pass_condition,created,campaign_ids,users,flags'
+    DELETE_SEGMENT = 'https://target.my.com/api/v1/remarketing/mass_action/delete.json'
+    SEGMENTS = 'https://target.my.com/api/v2/remarketing/segments.json?fields=relations__object_type,relations__object_id,relations__params,relations__params__score,relations__id,relations_count,id,name,pass_condition,created,campaign_ids,users,flags&limit=500&_=1618520614732'
+    CAMAPAGINS_LIST = 'https://target.my.com/api/v2/campaigns.json?fields=id%2Cname%2Cdelivery%2Cprice%2Cbudget_limit%2Cbudget_limit_day%2Cpads_ots_limits%2Ccreated%2Cissues%2Cprices%2Cstatus%2Cpackage_id%2Cinterface_read_only%2Cobjective%2Cuser_id%2Ctargetings__split_audience%2Ctargetings__pads%2Cenable_utm%2Cutm%2Cage_restrictions%2Cpackage_priced_event_type%2Cautobidding_mode&sorting=-id&limit=10&offset=0&_status__in=active&_user_id__in=10912810&_=1618671349542'
