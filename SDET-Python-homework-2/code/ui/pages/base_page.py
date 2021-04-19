@@ -1,5 +1,8 @@
 import logging
 import os
+import pathlib
+import shutil
+import sys
 import time
 import pytest
 import allure
@@ -66,7 +69,12 @@ class BasePage(object):
         element.send_keys(path)
 
     def file_path(self):
-        DIR = os.path.dirname(os.path.dirname(os.getcwd())) + '\data\picture.jpg'
+
+        if sys.platform.startswith('win'):
+            DIR = os.path.dirname(os.path.dirname(os.path.dirname(pathlib.Path(__file__).parent.absolute()))) + '\\data\\picture.jpg'
+        else:
+            DIR = os.path.dirname(os.path.dirname(os.path.dirname(pathlib.Path(__file__).parent.absolute()))) + '/data/picture.jpg'
+
         logger.info(f'FINDING FILE IN {DIR}')
         return DIR
 
