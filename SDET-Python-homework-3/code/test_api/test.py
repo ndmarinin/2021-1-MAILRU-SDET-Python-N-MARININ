@@ -1,5 +1,5 @@
 import time
-
+from utils.decorators import wait
 import pytest
 
 from api.client import InvalidLoginException
@@ -18,8 +18,7 @@ class TestApi(ApiBase):
     def test_create_campagin(self, auth_user):
         campagin_name = Builder.create_text()
         id = self.api_client.post_create_company(campagin_name)
-        time.sleep(10)
-        assert id in self.api_client.get_campagins().text
+        wait(self.api_client.check(id), error=AssertionError, timeout=10)
         self.api_client.post_delete_company(id)
 
     @pytest.mark.api

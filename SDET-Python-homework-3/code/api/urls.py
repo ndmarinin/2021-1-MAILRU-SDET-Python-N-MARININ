@@ -1,5 +1,8 @@
 
 class URLS:
+    URL_ID = 'https://target.my.com/api/v1/urls/?url='
+    UPLOAD = 'https://target.my.com/api/v2/content/static.json'
+    MEDIATEKA = 'https://target.my.com/api/v2/mediateka.json'
     MAIN_PAGE = 'https://target.my.com/'
     SESSION =  'https://target.my.com/api/v2/user/session.json?fields=sudoers__language,sudoers__username,sudoers__lastname,sudoers__types,sudoers__firstname,sudoers__additional_info,sudoers__additional_emails,sudoers__email_settings,sudoers__account,sudoers__active_banners,sudoers__agency,sudoers__agency_username,sudoers__branch_username,sudoers__branch,sudoers__email,sudoers__id,sudoers__mailings,sudoers__available_mailings,sudoers__max_active_banners,sudoers__permissions,sudoers__status,sudoers__currency,sudoers__info_currency,sudoers__partner,sudoers__dmp,sudoers__notifications,sudoers__regions,sudoers__timezone,sudoers__country&_=1618414356869'
     SETTINGS = 'https://target.my.com/api/v2/settings.json?_=1618414356871'

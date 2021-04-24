@@ -115,16 +115,47 @@ class ApiClient:
 
     def post_create_company(self, name):
         response = self.session.get(URLS.SEGMENTS_LIST)
-        print(response.text)
+        img_id = self.post_send_file()
         contents = open('data.json', 'rb').read()
         dictData = json.loads(contents)
         dictData["name"] = name
+        url_id = self.get_url_id('mail.ru')
+        for item in dictData:
+            if item == 136898:
+                item = url_id
+            if item == 4604427:
+                item = img_id
+
         response = self.session.request('POST', URLS.CAMPAGINS, json=dictData, headers=HEADERS.headers_create_campagin(self))
         print(response.text)
         id = response.text.split(':')
         id = id[3].replace('}', '').replace(' ', '')
         print(id)
         return id
+
+    def post_send_file(self):
+        files = {'file': open('../test_api/image.jpg', 'rb'),
+                 "width":0, "height":0}
+        response = self.session.request('POST', URLS.UPLOAD, files=files, headers=HEADERS.headers_upload(self))
+        id = response.text
+        id = id.split(',')
+        id = id[0].split(' ')
+        print(response.text)
+        print(id[1])
+        data = {
+  "description": "image.jpg",
+  "content": {
+    "id": int(id[1])
+  }
+}
+        response = self.session.request('POST', URLS.MEDIATEKA, json=data, headers=HEADERS.headers_mediateka(self))
+        return id[1]
+
+    def get_url_id(self, url):
+        response = self.session.get(URLS.URL_ID + url)
+        dictData = json.loads(response.text)
+        return dictData["id"]
+
 
     def post_delete_company(self, id):
         data = [{
@@ -161,3 +192,8 @@ class ApiClient:
     def get_campagins(self):
         response = self.session.get(URLS.CAMAPAGINS_LIST)
         return response
+
+    def check(self, id):
+        assert id in self.get_campagins().text
+        return Exception
+

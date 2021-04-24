@@ -20,6 +20,16 @@ class HEADERS:
                 'Accept-Language': 'ru',
                 'Referer': 'https://target.my.com/campaign/new'}
 
+    def headers_mediateka(self):
+        return {'Content-Type': 'application/json',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36',
+                'Accept': '*/*',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': self.csrf_token,
+                'Origin': 'https://target.my.com',
+                'Accept-Language': 'ru',
+                'Referer': 'https://target.my.com/campaign/new'}
+
     def headers_delete_campagin(self):
         return {'Content-Type': 'application/json',
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36',
@@ -51,4 +61,14 @@ class HEADERS:
                 'Origin': 'https://target.my.com',
                 'Accept-Language': 'ru',
                 'Referer': 'https://target.my.com/segments/segments_list',
+                }
+
+    def headers_upload(self):
+        return {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36',
+                'Accept': '*/*',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': self.csrf_token,
+                'Origin': 'https://target.my.com',
+                'Accept-Language': 'ru',
+                'Referer': 'https://target.my.com/campaign/new',
                 }

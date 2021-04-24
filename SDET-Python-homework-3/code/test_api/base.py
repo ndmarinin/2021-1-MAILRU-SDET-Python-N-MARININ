@@ -1,4 +1,5 @@
 import pytest
+from selenium.webdriver.support.wait import WebDriverWait
 
 from utils.builder import Builder
 
@@ -14,3 +15,8 @@ class ApiBase:
         self.api_client = api_client
         if self.authorize:
             self.api_client.post_login(*credentials)
+
+    def wait(self, timeout=None):
+        if timeout is None:
+            timeout = 5
+        return WebDriverWait(self.driver, timeout=timeout)
