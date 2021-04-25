@@ -120,11 +120,8 @@ class ApiClient:
         dictData = json.loads(contents)
         dictData["name"] = name
         url_id = self.get_url_id('mail.ru')
-        for item in dictData:
-            if item == 136898:
-                item = url_id
-            if item == 4604427:
-                item = img_id
+        dictData['banners'][0]['urls']['primary']['id'] = url_id
+        dictData['banners'][0]['content']['image_240x400']['id'] = img_id
 
         response = self.session.request('POST', URLS.CAMPAGINS, json=dictData, headers=HEADERS.headers_create_campagin(self))
         print(response.text)
@@ -142,12 +139,10 @@ class ApiClient:
         id = id[0].split(' ')
         print(response.text)
         print(id[1])
-        data = {
-  "description": "image.jpg",
-  "content": {
-    "id": int(id[1])
-  }
-}
+        data = {"description": "image.jpg",
+                "content":
+                    {"id": int(id[1])}
+                }
         response = self.session.request('POST', URLS.MEDIATEKA, json=data, headers=HEADERS.headers_mediateka(self))
         return id[1]
 
@@ -187,13 +182,11 @@ class ApiClient:
 
     def get_segments(self):
         response = self.session.get(URLS.SEGMENTS)
-        return response
+        return response.text
 
     def get_campagins(self):
         response = self.session.get(URLS.CAMAPAGINS_LIST)
-        return response
+        return response.text
 
-    def check(self, id):
-        assert id in self.get_campagins().text
-        return Exception
+
 

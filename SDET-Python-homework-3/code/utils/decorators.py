@@ -1,7 +1,8 @@
 import time
 
 
-def wait(method, error=Exception, timeout=10, interval=0.5, check=False, **kwargs):
+
+def wait(method, error=Exception, timeout=10, interval=2, check=False, **kwargs):
     st = time.time()
     last_exception = None
     while time.time() - st < timeout:
