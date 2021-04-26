@@ -182,11 +182,11 @@ class ApiClient:
 
     def get_segments(self):
         response = self.session.get(URLS.SEGMENTS)
-        return response.text
+        return response.json()
 
     def get_campagins(self):
         response = self.session.get(URLS.CAMAPAGINS_LIST)
-        return response.text
+        return response.json()
 
 
 
