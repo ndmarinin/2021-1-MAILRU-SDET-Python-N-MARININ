@@ -1,0 +1,75 @@
+String count
+199265
+TOP 10 URLS
+1 position
+URL = h
+COUNT = t
+2 position
+URL = h
+COUNT = t
+3 position
+URL = h
+COUNT = t
+4 position
+URL = h
+COUNT = t
+5 position
+URL = h
+COUNT = t
+6 position
+URL = h
+COUNT = t
+7 position
+URL = h
+COUNT = t
+8 position
+URL = h
+COUNT = t
+9 position
+URL = h
+COUNT = t
+10 position
+URL = h
+COUNT = t
+TOP 5 4XX
+1 position
+URL = /index.php?option=com_phocagallery&view=category&id=4025&Itemid=53 
+CODE = 404
+SIZE = 1417
+IP = 189.217.45.73
+2 position
+URL = /index.php?option=com_phocagallery&view=category&id=7806&Itemid=53 
+CODE = 404
+SIZE = 1417
+IP = 189.217.45.73
+3 position
+URL = /index.php?option=com_phocagallery&view=category&id=%28SELECT%20%28CASE%20WHEN%20%289168%3D4696%29%20THEN%209168%20ELSE%209168%2A%28SELECT%209168%20FROM%20INFORMATION_SCHEMA.CHARACTER_SETS%29%20END%29%29&Itemid=53 
+CODE = 404
+SIZE = 1417
+IP = 189.217.45.73
+4 position
+URL = /index.php?option=com_phocagallery&view=category&id=%28SELECT%20%28CASE%20WHEN%20%281753%3D1753%29%20THEN%201753%20ELSE%201753%2A%28SELECT%201753%20FROM%20INFORMATION_SCHEMA.CHARACTER_SETS%29%20END%29%29&Itemid=53 
+CODE = 404
+SIZE = 1417
+IP = 189.217.45.73
+5 position
+URL = /index.php?option=com_easyblog&view=dashboard&layout=write 
+CODE = 404
+SIZE = 1397
+IP = 104.129.9.248
+TOP 5 5XX
+1 position
+IP = 189.217.45.73
+COUNT = 225
+2 position
+IP = 82.193.127.15
+COUNT = 3
+3 position
+IP = 91.210.145.36
+COUNT = 3
+4 position
+IP = 194.87.237.6
+COUNT = 2
+5 position
+IP = 198.38.94.207
+COUNT = 2

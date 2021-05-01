@@ -1,12 +1,43 @@
-import gzip
 import json
-import os
-import sys
 import re
 from collections import Counter
 import argparse
 
+def print_5xx(error_5xx):
+    out_file.write("TOP 5 5XX\n")
+    for i in range(5):
+        out_file.write(str(i + 1) + " position\n")
+        out_file.write("IP = " + str(top_5[i][0]) + "\n")
+        out_file.write("COUNT = " + str(top_5[i][1]) + "\n")
 
+def print_4xx(error):
+    out_file.write("TOP 5 4XX\n")
+    for i in range(5):
+        out_file.write(str(i + 1) + " position\n")
+        out_file.write("URL = " + str(error[i][0]) + "\n")
+        out_file.write("CODE = " + str(error[i][1]) + "\n")
+        out_file.write("SIZE = " + str(error[i][2]) + "\n")
+        out_file.write("IP = " + str(error[i][3]) + "\n")
+
+def print_top10(top_10):
+    out_file.write("TOP 10 URLS\n")
+    for i in range(10):
+        out_file.write(str(i + 1) + " position\n")
+        out_file.write("URL = " + str(top_10[i][0]) + "\n")
+        out_file.write("COUNT = " + str(top_10[i][1]) + "\n")
+
+def print_method(get_count, post_count, head_count, put_count):
+    out_file.write("GET count\n")
+    out_file.write(str(get_count) + "\n")
+    out_file.write("POST count\n")
+    out_file.write(str(post_count) + "\n")
+    out_file.write("HEAD count\n")
+    out_file.write(str(head_count) + "\n")
+    out_file.write("PUT count\n")
+    out_file.write(str(put_count) + "\n")
+def print_count(line_count):
+    out_file.write("String count\n")
+    out_file.write(str(line_count) + "\n")
 
 lineformat = re.compile(r"""(?P<ipaddress>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - - \[(?P<dateandtime>\d{2}\/[a-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2} (\+|\-)\d{4})\] ((\"(GET|POST|HEAD|PUT) )(?P<url>.+)(http\/1\.1")) (?P<statuscode>\d{3}) (?P<bytessent>\d+) (["](?P<refferer>(\-)|(.+))["]) (["](?P<useragent>.+)["])""", re.IGNORECASE)
 urls = []
@@ -49,36 +80,14 @@ for l in logfile.readlines():
             put_count += 1
         #print( ip,datetimestring,url,bytessent,referrer,useragent,status,method)
 logfile.close()
-out_file.write("String count\n")
-out_file.write(str(line_count) + "\n")
-out_file.write("GET count\n")
-out_file.write(str(get_count) + "\n")
-out_file.write("POST count\n")
-out_file.write(str(post_count) + "\n")
-out_file.write("HEAD count\n")
-out_file.write(str(head_count) + "\n")
-out_file.write("PUT count\n")
-out_file.write(str(put_count) + "\n")
+
+print_count(line_count)
 top_10 = (Counter(urls).most_common(10))
-out_file.write("TOP 10 URLS\n")
-for i in range(10):
-    out_file.write(str(i+1) + " position\n")
-    out_file.write("URL = " + str(top_10[i][0]) + "\n")
-    out_file.write("COUNT = " + str(top_10[i][1]) + "\n")
-error.sort(key = lambda x: x[2], reverse=True)
-out_file.write("TOP 5 4XX\n")
-for i in range(5):
-    out_file.write(str(i+1) + " position\n")
-    out_file.write("URL = " + str(error[i][0]) + "\n")
-    out_file.write("CODE = " + str(error[i][1]) + "\n")
-    out_file.write("SIZE = " + str(error[i][2]) + "\n")
-    out_file.write("IP = " + str(error[i][3]) + "\n")
-out_file.write("TOP 5 5XX\n")
+error.sort(key=lambda x: x[2], reverse=True)
 top_5 = (Counter(error_5xx).most_common(5))
-for i in range(5):
-    out_file.write(str(i+1) + " position\n")
-    out_file.write("IP = " + str(top_5[i][0]) + "\n")
-    out_file.write("COUNT = " + str(top_5[i][1]) + "\n")
+print_top10(urls)
+print_4xx(error)
+print_5xx(error_5xx)
 out_file.close()
 
 
