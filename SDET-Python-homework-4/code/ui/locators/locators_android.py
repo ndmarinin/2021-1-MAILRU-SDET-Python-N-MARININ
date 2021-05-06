@@ -30,5 +30,5 @@ class SearchPageANDROIDLocators(BasePageANDROIDLocators):
     CARD = (MobileBy.ID, 'ru.mail.search.electroscope:id/item_dialog_fact_card_content_text')
     CARD_TITLE = (MobileBy.ID, 'ru.mail.search.electroscope:id/item_dialog_fact_card_title')
     DIALOG_ITEM = (MobileBy.ID, 'ru.mail.search.electroscope:id/dialog_item')
-    NUMBERS = (MobileBy.XPATH, "//android.widget.TextView[contains(@text, 'численность населения россии')]")
+    NUMBERS = (MobileBy.XPATH, "//android.widget.TextView[contains(@text, 'население россии')]")
 

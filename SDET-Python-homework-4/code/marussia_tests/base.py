@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from _pytest.fixtures import FixtureRequest
 
@@ -19,3 +21,8 @@ class BaseCase:
         self.settings_page: SettingsPage = request.getfixturevalue('settings_page')
 
         self.logger.debug('Initial setup done!')
+
+    def get_file_version(self):
+        dir = os.path.dirname(os.path.abspath(os.path.join(__file__, os.pardir))) + '\\stuff\\'
+        file_name = os.listdir(dir)[0]
+        return file_name[10:16]

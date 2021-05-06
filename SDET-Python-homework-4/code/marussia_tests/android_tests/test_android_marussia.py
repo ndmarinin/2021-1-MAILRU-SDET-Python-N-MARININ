@@ -1,4 +1,3 @@
-import os
 import time
 import pytest
 from marussia_tests.base import BaseCase
@@ -38,10 +37,7 @@ class TestMarussiaAndroid(BaseCase):
         version = self.settings_page.get_version()
         assert version in self.get_file_version()
 
-    def get_file_version(self):
-        dir = os.path.dirname(os.path.dirname(os.path.abspath(os.path.join(__file__, os.pardir)))) + '\\stuff\\'
-        file_name = os.listdir(dir)[0]
-        return file_name[10:16]
+
 
 
 

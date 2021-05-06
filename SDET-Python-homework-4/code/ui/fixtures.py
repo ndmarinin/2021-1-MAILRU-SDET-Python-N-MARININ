@@ -58,9 +58,9 @@ def get_driver(appium_url):
 @pytest.fixture(scope='function')
 def driver(config):
     appium_url = config['appium']
-    browser = get_driver(appium_url)
-    yield browser
-    browser.quit()
+    driver = get_driver(appium_url)
+    yield driver
+    driver.quit()
 
 
 @pytest.fixture(scope='function')
