@@ -4,6 +4,7 @@ from mysql.builder import MySQLBuilder
 from mysql.models import Count, Methods, Error5xx, Error4xx, TopUrls
 from tests.data import Make_data
 
+
 class MySQLBase:
 
     def prepare(self):
@@ -16,7 +17,6 @@ class MySQLBase:
 
 
 class TestMysql(MySQLBase):
-
     data = Make_data()
     data.analyze()
 
@@ -95,10 +95,3 @@ class TestRows(TestMysql):
         urls = self.get_urls()
         assert len(urls) == 10
         assert len(urls[5].url) > 10
-
-
-
-
-
-
-
