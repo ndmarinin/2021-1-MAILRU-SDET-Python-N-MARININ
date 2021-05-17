@@ -18,7 +18,6 @@ class Make_data:
         result = []
         for i in range(5):
             result.append([str(self.top_5[i][0]), int(self.top_5[i][1])])
-            print(str(self.top_5[i][0]), int(self.top_5[i][1]))
         return result
 
     def print_4xx(self):
@@ -80,7 +79,6 @@ class Make_data:
                     self.head_count += 1
                 elif (method.__contains__("PUT")):
                     self.put_count += 1
-                # print( ip,datetimestring,url,bytessent,referrer,useragent,status,method)
         logfile.close()
 
         self.top_10 = (Counter(self.urls).most_common(10))
