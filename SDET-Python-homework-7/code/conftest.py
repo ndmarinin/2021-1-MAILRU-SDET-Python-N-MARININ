@@ -52,7 +52,7 @@ def start_app(config):
 
 
 def start_stub(config):
-    # stub_path = os.path.join(repo_root, 'stub', 'flask_stub.py')
+    #stub_path = os.path.join(repo_root, 'stub', 'flask_stub.py')
     stub_path = os.path.join(repo_root, 'stub', 'simple_http_server_stub.py')
     stub_out = open(os.path.join(repo_root, 'tests', 'stub_stdout.log'), 'w')
     stub_err = open(os.path.join(repo_root, 'tests', 'stub_stderr.log'), 'w')

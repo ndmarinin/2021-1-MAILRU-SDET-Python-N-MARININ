@@ -109,7 +109,6 @@ class Base:
                 s.close()
                 break
         data = ''.join(total_data).splitlines()
-        print(data)
         status = data[0].split(' ')
         status = int(status[1])
         LOGGER.info(status)
@@ -160,7 +159,6 @@ class Base:
                 s.close()
                 break
         data = ''.join(total_data).splitlines()
-        print(data)
         status = data[0].split(' ')
         status = int(status[1])
         LOGGER.info(status)
