@@ -1,0 +1,97 @@
+version: '3.8'
+
+networks:
+  net:
+    name: ${NETWORK_NAME}
+    external: true
+
+
+services:
+
+    mysql:
+      networks:
+        net: null
+      image: "percona:latest"
+      environment:
+        MYSQL_ROOT_PASSWORD: pass
+      healthcheck:
+        test: ['CMD', 'mysqladmin', '-uroot', '-ppass', 'ping', '-h', '127.0.0.1']
+        timeout: 1s
+        retries: 30
+      volumes:
+        - ./config/sql_conf.sql:/tmp/sql_conf.sql
+      command: --init-file /tmp/sql_conf.sql
+      ports: 
+        - 3306:3306
+
+        
+
+
+    vk_api:
+      networks:
+        net: null
+      build: vk_api
+      ports:
+        - "5000:5000"
+
+
+
+    myapp:
+      networks:
+        net: null
+      image: myapp:latest
+      ports:
+          - "8080:8080"
+      depends_on:
+          vk_api:
+              condition: service_started
+          mysql:
+              condition: service_healthy
+      volumes:
+          - ./config:/config
+      entrypoint: "/app/myapp --config=/config/conf"
+      links:
+          - mysql
+          - vk_api
+      restart: always
+
+
+    solenoid:
+      networks:
+        net: null
+      image: aerokube/selenoid:latest-release
+      environment: 
+        OVERRIDE_VIDEO_OUTPUT_DIR: /c/Users/Admin/.aerokube/selenoid/video
+        DOCKER_API_VERSION: 1.41
+        PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      volumes:
+        - C:\Users\Admin\.aerokube\selenoid:/etc/selenoid
+        - C:\Users\Admin\.aerokube\selenoid/video:/opt/selenoid/video
+        - C:\Users\Admin\.aerokube\selenoid/logs:/opt/selenoid/logs
+        - //var/run/docker.sock:/var/run/docker.sock
+      ports:
+        - 4444:4444
+      command: ["-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-container-network", "${NETWORK_NAME}"]
+
+    tests:
+      tty: true
+      networks:
+        net: null
+      build: tests
+      environment:
+        - threads=${THREADS}
+        - browser=${browser}
+      depends_on:
+        myapp:
+          condition: service_started
+        solenoid:
+          condition: service_started
+        vk_api:
+          condition: service_started
+        mysql:
+          condition: service_healthy
+      volumes:
+        - ./alluredir/:/tmp/alluredir
+        - ./tests/test_dir/:/test_dir
+
+
