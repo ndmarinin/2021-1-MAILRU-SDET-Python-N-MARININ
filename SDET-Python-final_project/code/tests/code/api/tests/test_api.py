@@ -161,6 +161,7 @@ class TestApi:
         """)
     def test_block_user(self):
         username, email, password = create_user()
+        self.api_client.add_user(username, password, email)
         assert self.api_client.block_user(username).status_code == 200
 
     @pytest.mark.API
