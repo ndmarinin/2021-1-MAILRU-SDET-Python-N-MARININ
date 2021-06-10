@@ -180,7 +180,7 @@ class TestApi:
     def test_block_active_session(self):
         username, email, password = create_user()
         self.api_client.add_user(username, password, email)
-        assert self.api_client.auth(username, password).status_code == 200
-        assert self.api_client.block_user(username).status_code == 200
+        self.api_client.auth(username, password)
+        self.api_client.block_user(username)
         assert self.MySqlBuilder.get_user(username).access == 1
         assert self.MySqlBuilder.get_user(username).active == 0
