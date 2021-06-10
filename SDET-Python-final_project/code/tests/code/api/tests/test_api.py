@@ -95,7 +95,7 @@ class TestApi:
     def test_add_user_dublicate_email(self):
         username, email, password = create_user()
         username2, email2, password2 = create_user()
-        assert self.api_client.add_user(username, password, email).status_code == 200
+        self.api_client.add_user(username, password, email)
         assert self.api_client.add_user(username2, password2, email).status_code == 400
 
     @pytest.mark.API
@@ -134,7 +134,6 @@ class TestApi:
         """)
     def test_del_exist_user(self):
         username, email, password = create_user()
-        assert self.api_client.add_user(username, password, email).status_code == 200
         assert self.api_client.delete_user(username).status_code == 204
 
     @pytest.mark.API
@@ -161,7 +160,6 @@ class TestApi:
         """)
     def test_block_user(self):
         username, email, password = create_user()
-        assert self.api_client.add_user(username, password, email).status_code == 200
         assert self.api_client.block_user(username).status_code == 200
 
     @pytest.mark.API
