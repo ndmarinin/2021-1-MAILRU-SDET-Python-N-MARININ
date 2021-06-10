@@ -161,10 +161,10 @@ class TestApi:
         """)
     def test_logout_data(self):
         username, email, password = create_user()
-        assert self.api_client.add_user(username, password, email).status_code == 200
-        assert self.api_client.auth(username, password).status_code == 200
-        assert self.MySqlBuilder.get_user(username).access == 1
-        assert self.api_client.logout().status_code == 200
+        self.api_client.add_user(username, password, email)
+        self.api_client.auth(username, password)
+        self.MySqlBuilder.get_user(username)
+        self.api_client.logout()
         assert self.MySqlBuilder.get_user(username).access == 0
 
     @pytest.mark.API_DB

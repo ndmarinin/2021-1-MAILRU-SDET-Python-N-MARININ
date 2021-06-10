@@ -134,6 +134,7 @@ class TestApi:
         """)
     def test_del_exist_user(self):
         username, email, password = create_user()
+        self.api_client.add_user(username, password, email)
         assert self.api_client.delete_user(username).status_code == 204
 
     @pytest.mark.API
